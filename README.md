@@ -1,6 +1,6 @@
 # WebAppProject
 <h2 align="center">What is this project about?</h2>
-It is a project for my year 2 semester 2 course. Basically web development but using C# and asp.net.
+It is a project for my year 2 semester 2 course. Basically advanced web development but using C# and asp.net.
 Goal of the project was to develop the website to fit the project requirements by a deadline.
 The project would then be assessed based on the criterias that the course teachers have shown us.
 
