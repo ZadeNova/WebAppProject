@@ -218,11 +218,54 @@ public partial class Payment : BasePage
         decimal Total = 0;
         foreach (ShoppingCartItem item in ShoppingCart.Instance.Items)
         {
-            Total = Total + item.Product_Price;
+            System.Diagnostics.Debug.WriteLine(item.Product_Name);
+            System.Diagnostics.Debug.WriteLine(item.Quantity);
+            Total = Total + (item.Product_Price * item.Quantity);
+            
         }
         return Total;
     }
 
+    protected decimal[] GetCategorySpending()
+    {
+        
+        decimal AnimePrice = 0;
+        decimal MarvelPrice = 0;
+        decimal DCPrice = 0;
+        decimal StarWarsPrice = 0;
+        foreach(ShoppingCartItem item in ShoppingCart.Instance.Items)
+        {
+            if (item.Product_Type == "Marvel")
+            {
+                MarvelPrice = MarvelPrice + (item.Quantity * item.Product_Price);
+            }
+            else if (item.Product_Type == "DC")
+            {
+                DCPrice = DCPrice + (item.Quantity * item.Product_Price);
+            }
+            else if (item.Product_Type == "Anime")
+            {
+                AnimePrice = AnimePrice + (item.Quantity * item.Product_Price);
+            }
+            else if (item.Product_Type == "StarWars")
+            {
+                StarWarsPrice = StarWarsPrice + (item.Quantity * item.Product_Price);
+            }
+
+
+            System.Diagnostics.Debug.WriteLine(item);
+
+            System.Diagnostics.Debug.WriteLine(item.Product_Name);
+            System.Diagnostics.Debug.WriteLine(item.Quantity);
+
+
+        }
+
+        decimal[] Categoricalspending = new decimal[4] {MarvelPrice,AnimePrice,DCPrice,StarWarsPrice};
+
+
+        return Categoricalspending;
+    }
 
 
 
@@ -237,7 +280,11 @@ public partial class Payment : BasePage
         //SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString);
         DateTime currentdate = DateTime.Now;
         decimal TotalPrice = GetTotalPrice();
-
+        decimal[] CategorySpending = GetCategorySpending();
+        System.Diagnostics.Debug.WriteLine(CategorySpending[0]);
+        System.Diagnostics.Debug.WriteLine(CategorySpending[1]);
+        System.Diagnostics.Debug.WriteLine(CategorySpending[2]);
+        System.Diagnostics.Debug.WriteLine(CategorySpending[3]);
         using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString))
         {
             using (SqlCommand cmd = new SqlCommand("Order_Products"))
@@ -259,6 +306,27 @@ public partial class Payment : BasePage
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
+
+            using (SqlCommand cmd = new SqlCommand("Category_Spending", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Action", "INSERT");
+                cmd.Parameters.AddWithValue("@OrderID", newGUID);
+                cmd.Parameters.AddWithValue("@UserID", Session["USERID"].ToString());
+                cmd.Parameters.AddWithValue("@MarvelPrice",CategorySpending[0]);
+                cmd.Parameters.AddWithValue("@DCPrice", CategorySpending[2]);
+                cmd.Parameters.AddWithValue("@AnimePrice", CategorySpending[1]);
+                cmd.Parameters.AddWithValue("@StarWarsPrice", CategorySpending[3]);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                
+            }
+
+
+
+
+
         }
 
             //string insertQuery = "INSERT INTO ORDERS (OrderID, FirstName, LastName, Address, ZipCode, PhoneNo) " +
@@ -283,7 +351,7 @@ public partial class Payment : BasePage
 
         ShoppingCart.Instance.ClearCartAfterPayment();
 
-        Response.Redirect("index.aspx");
+        Response.Redirect("Home");
 
 
 

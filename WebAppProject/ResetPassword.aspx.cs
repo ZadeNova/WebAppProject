@@ -30,7 +30,7 @@ public partial class ResetPassword : System.Web.UI.Page
             cmd.ExecuteNonQuery();
             conn.Close();
             Response.Write("<script>alert('Your Password has been successfully updated');</script>");
-            Response.Redirect("index.aspx");
+            Response.Redirect("Home");
         }
         else
         {

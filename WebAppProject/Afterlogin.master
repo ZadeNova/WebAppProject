@@ -20,7 +20,7 @@
                 <div class="topnav">
                     <div class="topnavdd">
                         <%--<button><i style="color: black;" class="material-icons">person</i></button>--%>
-                        <a href="ProfilePage.aspx">
+                        <a href="Profile">
                             <asp:Label ID="lblAftLogin" runat="server" Text="Label" Font-Bold="True"></asp:Label>
                         </a>
                         <div class="topnavdd-content">
@@ -41,6 +41,7 @@
                             <a href="#" style="font-family: 'Oswald', sans-serif;">Wish List&nbsp&nbsp❤</a>
                             <a href="#" style="font-family: 'Oswald', sans-serif;">Order Status</a>
                             <a href="#" style="font-family: 'Oswald', sans-serif;">Payment Methods</a>
+                            <a href="TwoFactorSettings" style="font-family: 'Oswald', sans-serif;">TwoFA Settings</a>
                         </div>
                     </div>
                     <a href="#">Help</a>
@@ -51,7 +52,7 @@
                 <div class="midnav">
                     <%--This logo links to the home page.--%>
                     <div class="midnavleft">
-                        <a href="index.aspx">Zade</a>
+                        <a href="Home" class="NameOfWebsite">Zade</a>
                     </div>
 
                     <%--This searchbar will allow users to search for a book using the title/author.--%>
@@ -69,17 +70,17 @@
                     <div class="midnavright">
                         <a href="#"><i style="color: black;" class="material-icons">location_on</i></a>
                         <%--This shopping cart icon will allow users to view their online cart.--%>
-                        <a href="ViewCart.aspx"><i style="color: #48C9B0" class="material-icons">shopping_cart</i></a>
+                        <a href="ViewCart"><i style="color: #48C9B0" class="material-icons">shopping_cart</i></a>
                     </div>
                 </div>
 
                 <div class="btmnav">
                     
                     
-                    <a href="MarvelProducts.aspx">Marvel</a>
-                    <a href="DCProducts.aspx">DC Comics</a>
-                    <a href="AnimeProducts.aspx">Anime</a>
-                    <a href="StarWarsProducts.aspx">Star Wars</a>
+                    <a href="Marvel">Marvel</a>
+                    <a href="DC">DC Comics</a>
+                    <a href="Anime">Anime</a>
+                    <a href="StarWars">Star Wars</a>
                     <a href="#">Keychains</a>
                    
                     <a style="color: red" href="#">Discounts</a>

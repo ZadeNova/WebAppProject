@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="assets/css/StyleSheet.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/MasterPage.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -18,31 +20,42 @@
             <div class="maincontainer">
                 <div class="topnav">
                     <div class="topnavdd">
-                        <a href="#">
+                        <a href="ProfilePage">
                             <asp:Label ID="lblAftLogin" runat="server" Text="ADMIN" Font-Bold="True"></asp:Label></a>
                         <div class="topnavdd-content">
                             <asp:Button ID="SignOut" runat="server" Style="padding: 7px; font-family: 'Oswald', sans-serif; color: #EC7063; border: 0.5px solid; background-color: inherit;" Text="Sign Out" OnClick="SignOut_Click" CausesValidation="false" />
+                            <a href="TwoFactorSettings">2FA Settings</a>
+                            <a href="ProfilePage">Profile page</a>
                         </div>
                     </div>
-                    <a href="Admin-Users.aspx">Manage Users</a>
-                    <a href="Admin-Orders.aspx">Manage Orders</a>
-                    <a href="Dashboard.aspx">Dashboard</a>
-                    <a href="Admin-CreateProduct.aspx">Create Product</a>
+                    <a href="ManageUsers">Manage Users</a>
+                    <a href="ManageOrders">Manage Orders</a>
+                    <div class="topnavdd">
+                        <a href="Dashboard">Dashboard</a>
+                        <div class="topnavdd-content">
+                            <a href="">Hello</a>
+                            <a href="">Hello</a>
+                            <a href="">Hello</a>
+                        </div>
+                        
+                    </div>
+                    
+                    <a href="CreateProduct">Create Product</a>
                 </div>
 
                 <div class="midnav">
                     <a style="color: #668cff; float: left; margin-left: 10px; font-size: 30px; font-family: 'Lucida Handwriting','Brush Script MT', cursive;"
-                        href="Admin-index.aspx">Zade
+                        href="Home" class="NameOfWebsite">Zade
                     </a>
                 </div>
 
                 <div class="btmnav">
                     
-                    <a href="Admin-BestSeller.aspx">Best Sellers</a>
-                    <a href="MarvelProducts.aspx">Marvel</a>
-                    <a href="DCProducts.aspx">DC Comics</a>
-                    <a href="AnimeProducts.aspx">Anime</a>
-                    <a href="StarWarsProducts.aspx">Star Wars</a>
+                    <a href="AllProducts">EditProducts</a>
+                    <a href="Marvel">Marvel</a>
+                    <a href="DC">DC Comics</a>
+                    <a href="Anime">Anime</a>
+                    <a href="StarWars">Star Wars</a>
                     <a href="#">Keychains</a>
                    
                     <a style="color: red" href="#">Discounts</a>

@@ -25,9 +25,11 @@ public class BasePage: System.Web.UI.Page
 
     protected override void OnPreInit(EventArgs e)
     {
+        
         if (Session["AdminMasterPage"] != null && Session["UserMasterPage"] == null)
         {
             this.MasterPageFile = Session["AdminMasterPage"].ToString();
+           
         }
 
         if (Session["UserMasterPage"] != null && Session["AdminMasterPage"] == null)
@@ -35,6 +37,8 @@ public class BasePage: System.Web.UI.Page
             this.MasterPageFile = Session["UserMasterPage"].ToString();
 
         }
+
+        
     }
 
    

@@ -64,7 +64,7 @@
                 <asp:Repeater ID="Repeater1" runat="server">
                      <ItemTemplate>
                         <div style="width: 146px;">
-                            <asp:ImageButton PostBackUrl='<%# ResolveClientUrl("ProductDetails.aspx?ProdID=" + Eval("Id"))%>' ID="imgBooks" CssClass="bookimage" ImageUrl='<%#Eval("Image") %>' runat="server" />
+                            <asp:ImageButton PostBackUrl='<%# ResolveClientUrl("ProductDetails?ProdID=" + Eval("Id"))%>' ID="imgBooks" CssClass="bookimage" ImageUrl='<%#Eval("Image") %>' runat="server" />
                             <asp:Label CssClass="booktitle" ID="lblTitle" runat="server" Text='<%#Eval("Product_Name")%>'></asp:Label>
                             <br />
                             <asp:Label CssClass="bookauthor" ID="lblAuthor" runat="server" Text='<%#Eval("Type") %>' Style="color: #48C9B0"></asp:Label>

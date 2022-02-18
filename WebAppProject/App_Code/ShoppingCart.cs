@@ -111,6 +111,7 @@ public class ShoppingCart
     public void ClearCartAfterPayment() //Clear cart
     {
         Items.Clear();
+        
     }
 
 

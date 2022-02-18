@@ -16,6 +16,7 @@ public partial class BestSeller : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
+            ZadeProdType.AutoPostBack = true;
             this.BindRepeater();
             
         }
@@ -24,6 +25,8 @@ public partial class BestSeller : System.Web.UI.Page
     private void BindRepeater()
     {
         string constr = ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString;
+        
+
         using (SqlConnection con = new SqlConnection(constr))
         {
             using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
@@ -43,7 +46,38 @@ public partial class BestSeller : System.Web.UI.Page
                 }
             }
         }
+
+
     }
+
+
+    private void FilterRepeater(string filter)
+    {
+        string constr = ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+            {
+                cmd.Parameters.AddWithValue("@Action", "SELECTTYPE");
+                cmd.Parameters.AddWithValue("@Type", filter);
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Connection = con;
+                    sda.SelectCommand = cmd;
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        
+                        Repeater1.DataSource = dt;
+                        Repeater1.DataBind();
+                    }
+                }
+            }
+        }
+    }
+
+
 
     protected void OnEdit(object sender, EventArgs e)
     {
@@ -69,6 +103,8 @@ public partial class BestSeller : System.Web.UI.Page
         item.FindControl("txtProductName").Visible = isEdit;
         item.FindControl("txtImage").Visible = isEdit;
         item.FindControl("txtProductType").Visible = isEdit;
+        item.FindControl("ProductPrice").Visible = isEdit;
+        
     }
 
     protected void OnUpdate(object sender, EventArgs e)
@@ -82,6 +118,8 @@ public partial class BestSeller : System.Web.UI.Page
         string name = (item.FindControl("txtProductName") as TextBox).Text.Trim();
         string prodtype = (item.FindControl("txtProductType") as TextBox).Text.Trim();
         string image = (item.FindControl("txtImage") as TextBox).Text.Trim();
+        
+        int Price = Convert.ToInt32((item.FindControl("ProductPrice") as TextBox).Text);
 
         string constr = ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString;
         using (SqlConnection con = new SqlConnection(constr))
@@ -95,6 +133,8 @@ public partial class BestSeller : System.Web.UI.Page
                 //pass in new values
                 cmd.Parameters.AddWithValue("@ProductID", ProdID);
                 cmd.Parameters.AddWithValue("@Product_Name", name);
+                
+                cmd.Parameters.AddWithValue("@Price", Price);
                 cmd.Parameters.AddWithValue("@Type", prodtype);
                 cmd.Parameters.AddWithValue("@Image", image);
                 cmd.Connection = con;
@@ -137,6 +177,130 @@ public partial class BestSeller : System.Web.UI.Page
 
     protected void btnAddItem_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Admin-CreateProduct.aspx");
+        Response.Redirect("CreateProduct");
     }
+
+    protected void ZadeProdType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        string constr = ConfigurationManager.ConnectionStrings["SunnyCS"].ConnectionString;
+        //FilterRepeater(ZadeProdType.Text);
+        switch (ZadeProdType.Text)
+        {
+            case "DC":
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+                    {
+                        cmd.Parameters.AddWithValue("@Action", "SELECTTYPE");
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.Parameters.AddWithValue("@Type", ZadeProdType.Text);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                Repeater1.DataSource = dt;
+                                Repeater1.DataBind();
+                            }
+                        }
+                    }
+                }
+                
+                break;
+            case "Marvel":
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+                    {
+                        cmd.Parameters.AddWithValue("@Action", "SELECTTYPE");
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.Parameters.AddWithValue("@Type", ZadeProdType.Text);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                Repeater1.DataSource = dt;
+                                Repeater1.DataBind();
+                            }
+                        }
+                    }
+                }
+                break;
+            case "Anime":
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+                    {
+                        cmd.Parameters.AddWithValue("@Action", "SELECTTYPE");
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.Parameters.AddWithValue("@Type", ZadeProdType.Text);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                Repeater1.DataSource = dt;
+                                Repeater1.DataBind();
+                            }
+                        }
+                    }
+                }
+                break;
+            case "StarWars":
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+                    {
+                        cmd.Parameters.AddWithValue("@Action", "SELECTTYPE");
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.Parameters.AddWithValue("@Type", ZadeProdType.Text);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                Repeater1.DataSource = dt;
+                                Repeater1.DataBind();
+                            }
+                        }
+                    }
+                }
+                break;
+            default:
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ZadeProducts"))
+                    {
+                        cmd.Parameters.AddWithValue("@Action", "SELECT");
+                        using (SqlDataAdapter sda = new SqlDataAdapter())
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Connection = con;
+                            sda.SelectCommand = cmd;
+                            using (DataTable dt = new DataTable())
+                            {
+                                sda.Fill(dt);
+                                Repeater1.DataSource = dt;
+                                Repeater1.DataBind();
+                            }
+                        }
+                    }
+                }
+                break;
+        }
+    }
+
+
+
+
+
 }

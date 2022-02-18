@@ -52,7 +52,7 @@
 
                             <div class="g-recaptcha" data-sitekey="6LcRAzQeAAAAAFdzy0SeKx01y3qevwqhp2V4F9rg"></div>
                             
-                            <a href="ForgotPassword.aspx">Forgot your password?</a>
+                            <a href="ForgetPassword">Forgot your password?</a>
                             <br />
                             <asp:Button ID="btnSignIn" class="btnsignin" runat="server" Text="Secure Sign In" OnClick="btnSignIn_Click" />
                         </div>
@@ -69,12 +69,11 @@
 
 
                         <div class="modalcontainer2">
-                            <a class="signinFB">
-                                <img src="images/fbbutton.png" height="20px" width="20px;" style="padding-top: 5px;" />
-                                Sign in with Facebook</a>
-                            <a class="signinGoogle">
+                            
+                            <a class="signinGoogle" href="">
                                 <img src="images/googlebtn.png" height="20px" width="20px;" style="padding-top: 10px;" />
                                 Sign in with Google</a>
+                            <asp:Button ID="SignInWithGoogle" class="btnsignin" runat="server" Text="Login with google" OnClick="SignInWithGoogle_Click" />
                             <p style="text-align: center; font-size: 10px; padding-top: 50px;">By signing in you agree to our Terms of Use and Privacy Policy</p>
                         </div>
 
@@ -152,7 +151,7 @@
                 <div class="midnav">
                     <%--This logo links to the home page.--%>
                     <div class="midnavleft">
-                        <a href="index.aspx">Zade</a>
+                        <a href="Home" class="NameOfWebsite">Zade</a>
                     </div>
 
                     <%--This searchbar will allow users to search for a book using the title/author.--%>
@@ -170,16 +169,16 @@
                     <div class="midnavright">
                         <a href="#"><i style="color: black;" class="material-icons">location_on</i></a>
                         <%--This shopping cart icon will allow users to view their online cart.--%>
-                        <a href="ViewCart.aspx" runat="server" onserverclick="Unnamed_ServerClick"><i style="color: #48C9B0" class="material-icons">shopping_cart</i></a>
+                        <a href="ViewCart" runat="server" onserverclick="Unnamed_ServerClick"><i style="color: #48C9B0" class="material-icons">shopping_cart</i></a>
                     </div>
                 </div>
 
                 <div class="btmnav">
                     
-                    <a href="MarvelProducts.aspx">Marvel</a>
-                    <a href="DCProducts.aspx">DC Comics</a>
-                    <a href="AnimeProducts.aspx">Anime</a>
-                    <a href="StarWarsProducts.aspx">Star Wars</a>
+                    <a href="Marvel">Marvel</a>
+                    <a href="DC">DC Comics</a>
+                    <a href="Anime">Anime</a>
+                    <a href="StarWars">Star Wars</a>
                     <a href="#">Keychains</a>
                    
                     <a style="color: red" href="#">Discounts</a>
@@ -320,6 +319,8 @@
 
                 var text = document.getElementById("textCaps");
                 var text2 = document.getElementById("textCaps2");
+                text.style.display = "none";
+                text2.style.display = "none"
                 myInput.addEventListener("keyup", function (event) {
 
                     if (event.getModifierState("CapsLock")) {

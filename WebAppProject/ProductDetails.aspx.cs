@@ -32,18 +32,18 @@ public partial class ProductDetails : BasePage
         lblPrice2.Text = prod.getProductPrice.ToString("C");
 
         imgProductDetails.ImageUrl = prod.getImage;
-        
 
-        //if (!IsPostBack)
-        //{
-        //    DataTable dt = this.GetData("SELECT ISNULL(AVG(Rating), 0) AverageRating, COUNT(Rating) " +
-        //        "RatingCount FROM [RATINGS] WHERE Title = @booktitle");
 
-        //    //display rating
-        //    Rating1.CurrentRating = Convert.ToInt32(dt.Rows[0]["AverageRating"]);
-        //    lblresult.Text = string.Format("{0} Ratings ", dt.Rows[0]["RatingCount"]);
-        //    lblavgrating.Text = string.Format("{1}", dt.Rows[0]["RatingCount"], dt.Rows[0]["AverageRating"]);
-        //}
+        if (!IsPostBack)
+        {
+            DataTable dt = this.GetData("SELECT ISNULL(AVG(Rating), 0) AverageRating, COUNT(Rating) " +
+                "RatingCount FROM [ProductRatings] WHERE ProductName = @ProdName");
+
+            //display rating
+            Rating1.CurrentRating = Convert.ToInt32(dt.Rows[0]["AverageRating"]);
+            lblresult.Text = string.Format("{0} Ratings ", dt.Rows[0]["RatingCount"]);
+            lblavgrating.Text = string.Format("{1}", dt.Rows[0]["RatingCount"], dt.Rows[0]["AverageRating"]);
+        }
     }
 
     //extract table data
@@ -51,7 +51,7 @@ public partial class ProductDetails : BasePage
     {
         SqlConnection con = new SqlConnection(constr);
         SqlCommand cmd = new SqlCommand(query);
-        cmd.Parameters.AddWithValue("@Product_Name", lblProdName.Text);
+        cmd.Parameters.AddWithValue("@ProdName", lblProdName.Text);
         SqlDataAdapter sda = new SqlDataAdapter();
         cmd.CommandType = CommandType.Text;
         cmd.Connection = con;
@@ -62,27 +62,48 @@ public partial class ProductDetails : BasePage
 
     public void btnSubmit_Click(object sender, EventArgs e)
     {
-        SqlConnection con = new SqlConnection(constr);
 
-        //insert rating into database
-        SqlCommand cmd = new SqlCommand("INSERT INTO [RATINGS] VALUES (@ratingvalue,@review,@title)");
-        SqlDataAdapter sda = new SqlDataAdapter();
-        cmd.CommandType = CommandType.Text;
-        cmd.Parameters.AddWithValue("@ratingvalue", Rating1.CurrentRating.ToString());
-        cmd.Parameters.AddWithValue("@review", txtreview.Text);
-        cmd.Parameters.AddWithValue("@title", lblProdName.Text);
-        cmd.Connection = con;
-        con.Open();
-        cmd.ExecuteNonQuery();
-        con.Close();
-        Response.Redirect(Request.Url.AbsoluteUri);
+        if (Session["Email"] == null && Session["UserID"] == null)
+        {
+            Response.Write("<script>alert('Please sign in to rate products');</script>");
+        }
+        else
+        {
+            SqlConnection con = new SqlConnection(constr);
+
+            //insert rating into database
+            SqlCommand cmd = new SqlCommand("INSERT INTO [ProductRatings] VALUES (@ratingvalue,@review,@ProductName)");
+            SqlDataAdapter sda = new SqlDataAdapter();
+            cmd.CommandType = CommandType.Text;
+            cmd.Parameters.AddWithValue("@ratingvalue", Rating1.CurrentRating.ToString());
+            cmd.Parameters.AddWithValue("@review", txtreview.Text);
+            cmd.Parameters.AddWithValue("@ProductName", lblProdName.Text);
+            cmd.Connection = con;
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        
     }
 
     protected void btnAddCart_Click(object sender, EventArgs e)
     {
-        
-        string iProductID = Request.QueryString["ProdID"].ToString();
-        ShoppingCart.Instance.AddItem(iProductID, prod);
+        if (Session["Email"] != null && Session["Role"] != null)
+        {
 
+            string iProductID = Request.QueryString["ProdID"].ToString();
+            ShoppingCart.Instance.AddItem(iProductID, prod);
+        }
+        else
+        {
+            Response.Write("<script>alert('Please sign in to add products to cart');</script>");
+            System.Diagnostics.Debug.WriteLine("User cannot buy items!");
+
+        }
+        //System.Diagnostics.Debug.WriteLine(Session["Email"].ToString());
+        //System.Diagnostics.Debug.WriteLine(Session["Role"].ToString());
+        System.Diagnostics.Debug.WriteLine("Helllo");
     }
 }

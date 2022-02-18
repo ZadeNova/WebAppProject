@@ -48,7 +48,7 @@ public partial class ForgotPassword : System.Web.UI.Page
         }
         
 
-        SendPasswordResetEmail(EmailTxtBox.Text.ToString());
+        //SendPasswordResetEmail(EmailTxtBox.Text.ToString());
     }
 
     protected void SendPasswordResetEmail(string Email)
@@ -62,7 +62,7 @@ public partial class ForgotPassword : System.Web.UI.Page
         mail.To.Add(new MailAddress(Email));
 
         mail.Subject = "Password Reset Email";
-        mail.Body = "<a href = " + Request.Url.AbsoluteUri.Replace("ForgotPassword.aspx", "ResetPassword.aspx") +">Click here to reset password<a/a>";
+        mail.Body = "<a href = " + Request.Url.AbsoluteUri.Replace("ForgetPassword", "ResetPassword") +">Click here to reset password<a/a>";
         mail.IsBodyHtml = true;
         smtpClient.Send(mail);
         Session["EmailResetPassword"] = Email;

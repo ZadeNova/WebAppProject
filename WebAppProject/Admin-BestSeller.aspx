@@ -8,10 +8,25 @@
     <head>
         <title>Best Sellers</title>
         <link rel="stylesheet" type="text/css" href="assets/css/BestSeller.css" />
+        <style>
+            .dropdownlist {
+
+            color:Snow;
+            background-color:#005c99;
+            font-family:Comic Sans MS;
+            font-size:large;
+            font-style:italic;
+            display:inline;
+            width:20%;
+            border-radius:5px;
+            border-style:double;
+
+            }
+        </style>
     </head>
     <body>
         <br />
-        <div class="pagetitle">The Best Sellers</div>
+        <div class="pagetitle">Edit Products</div>
         <br />
 
         <div class="sidecontainer">
@@ -58,18 +73,26 @@
 
         <div class="bookcontainer">
             <div class="containertitle">
-                <span>Create a new product</span>
+                <span>Create/Update a new product</span>
                 <asp:Button 
                     ID="btnAddItem"
                     Style="font-size: 14px; padding: 8px; margin-bottom: 10px; margin-left: 10px; border: 0.5px solid" 
                     runat="server" 
                     Text="INSERT" OnClick="btnAddItem_Click" />
+                <asp:DropDownList ID="ZadeProdType" runat="server" CssClass="dropdownlist" OnSelectedIndexChanged="ZadeProdType_SelectedIndexChanged">
+                            <asp:ListItem Value="">Please Select</asp:ListItem>  
+                            <asp:ListItem Text="DC" Value="DC"></asp:ListItem>  
+                            <asp:ListItem Text="Marvel" Value="Marvel"></asp:ListItem>  
+                            <asp:ListItem Text="Anime" Value="Anime"></asp:ListItem>  
+                            <asp:ListItem Text="StarWars" Value="StarWars"></asp:ListItem>  
+                            <asp:ListItem Text="Keychain" Value="Keychain"></asp:ListItem>  
+                        </asp:DropDownList>
             </div>
             <div class="bookshelf">
                 <asp:Repeater ID="Repeater1" runat="server">
                     <ItemTemplate>
                         <div style="width: 146px;">
-                            <asp:ImageButton ID="imgProduct" CssClass="bookimage" ImageUrl='<%#Eval("Image") %>' runat="server" />
+                            <asp:ImageButton ID="imgProduct" CssClass="bookimage" ImageUrl='<%#Eval("Image") %>' PostBackUrl='<%# ResolveClientUrl("ProductDetails2.aspx?ProdID=" + Eval("Id"))%>' runat="server" />
                             <asp:TextBox ID="txtImage" Text='<%#Eval("Image")%>' runat="server" Visible="False"></asp:TextBox>
                             <br />
 
@@ -80,7 +103,9 @@
                             <asp:Label CssClass="bookauthor" ID="lblProductType" runat="server" Text='<%#Eval("Type") %>' Style="color: #48C9B0"></asp:Label>
                             <asp:TextBox ID="txtProductType" Text='<%#Eval("Type") %>' runat="server" Visible="False"></asp:TextBox>
                             <br />
-
+                            <asp:TextBox ID="ProductPrice" Text='<%#Eval("Price") %>' runat="server" Visible="False"></asp:TextBox>
+                            <br />
+                            
                             <asp:Label ID="lblProductId" runat="server" Text='<%# Eval("Id") %>' Visible="False"></asp:Label>
                             <br />
 

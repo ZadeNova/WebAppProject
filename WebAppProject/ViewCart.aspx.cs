@@ -102,6 +102,16 @@ public partial class ViewCart : BasePage
 
     protected void btnCheckOut_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Payment.aspx");
+        if (ShoppingCart.Instance.Items.Count == 0)
+        {
+            Response.Write("<script>alert('Cannot check out if shopping cart is empty');</script>");
+            System.Diagnostics.Debug.WriteLine("Itsfuckign empty");
+        }
+        else
+        {
+            Response.Redirect("Payment");
+        }
+
+        
     }
 }

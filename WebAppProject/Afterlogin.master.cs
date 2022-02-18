@@ -15,12 +15,24 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         
         lblAftLogin.Text = Session["Email"].ToString();
+       if (Session["TwoFAStatus"].ToString().Equals("No2FA"))
+       {
+            
+            
+            
+       }
+       else if (Convert.ToBoolean(Session["TwoFAStatus"]) == false)
+       {
+            Response.Redirect("EmailOTP");
+       }
+
+        
     }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         Session["Search"] = txtSearch.Text;
-        Response.Redirect("Search.aspx");
+        Response.Redirect("Search");
     }
 
     protected void btnSignOut_Click(object sender, EventArgs e)
@@ -28,6 +40,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session["AdminMasterPage"] = null;
         Session["UserMasterPage"] = null;
         Session.Clear();
-        Response.Redirect("index.aspx");
+        Response.Redirect("Home");
     }
 }

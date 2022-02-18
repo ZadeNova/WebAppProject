@@ -120,7 +120,7 @@ public class Product
 
     public int UserDelete(string ID)
     {
-        string queryStr = "DELETE FROM Registration WHERE ID=@ID";
+        string queryStr = "DELETE FROM User_Accounts WHERE ID=@ID";
         SqlConnection conn = new SqlConnection(_connStr);
         SqlCommand cmd = new SqlCommand(queryStr, conn);
         cmd.Parameters.AddWithValue("@ID", ID);

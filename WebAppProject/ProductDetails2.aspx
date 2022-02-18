@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Afterlogin.master" AutoEventWireup="true" CodeFile="ProductDetails2.aspx.cs" Inherits="ProductDetails" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminMaster.master" AutoEventWireup="true" CodeFile="ProductDetails2.aspx.cs" Inherits="ProductDetails" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -42,72 +42,44 @@
             </div>
 
             <div class="bookauthor">
-                by
+                From
                 <asp:Label ID="lblAuthor" runat="server" Text="Label" Style="color: #48C9B0"></asp:Label>
             </div>
 
             <div style="height: 10px; font-size: 13px; padding-top: 6px; margin-bottom: 8px; margin-top: 5px; font-weight: bold">
-                <asp:Label ID="lblGenre" runat="server" Text="Label"></asp:Label>
+                
             </div>
 
             <div class="bookprice">
                 <asp:Label ID="lblPrice" runat="server" Text="Label"></asp:Label>
             </div>
 
-            <div class="booktype">
-                <a class="active">Standard<br />
-                    <asp:Label ID="lblPrice2" runat="server" Text="Label"></asp:Label></a>
-            </div>
+           
 
-            <div class="bookshipping">
-                ✔&nbsp Spend a Minimum of $30 to get Free Shipping
-            </div>
+        
 
             <div class="bookpurchase">
-                <asp:Button ID="btnAddCart" runat="server" Text="ADD TO CART" class="cartbutton" OnClick="btnAddCart_Click" />
-                <asp:Button ID="btnWishList" runat="server" Text="ADD TO WISHLIST" class="wishlistbutton" />
+                <asp:Button ID="UpdateDescription" runat="server" Text="Update Descriptions" class="cartbutton" OnClick="UpdateDescription_Click"/>
+                
             </div>
 
-            <div class="footnote">
+<%--            <div class="footnote">
                 Choose Expedited Shipping at checkout for guaranteed delivery within 
-            </div>
+            </div>--%>
 
-            <div class="footnote" style="font-weight: bold">
+          <%--  <div class="footnote" style="font-weight: bold">
                 &nbsp 2-3 days
-            </div>
+            </div>--%>
         </div>
 
         <div class="bookdescription">
-            <p style="text-align: center; font-family: 'Noticia Text', serif; font-weight: bold; font-size: 25px;">Overview</p>
+            <p style="text-align: center; font-family: 'Noticia Text', serif; font-weight: bold; font-size: 25px;">Edit Description</p>
             <asp:Label ID="lblDescription" runat="server" Text="Label"></asp:Label>
+            <%--<asp:TextBox ID="ProductDescription" runat="server"></asp:TextBox>--%>
+            <asp:TextBox ID="UpdateDescriptionTXT" runat="server" placeholder="Enter Updated Description Here"></asp:TextBox>
         </div>
 
-        <div class="booktitle" style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 10px; font-size: 25px;">
-            <asp:Label ID="Label2" runat="server" Text="Customer Review"></asp:Label>
-        </div>
-
-        <div class="leftratings">
-            <asp:Label ID="Label1" Style="font-family: 'Noticia Text', serif; font-size: 16px" runat="server" Text="Average Rating"></asp:Label><br />
-            <asp:Label ID="lblavgrating" runat="server" Text="Label" Font-Size="37px"></asp:Label>
-
-            <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-            <asp:Rating
-                ID="Rating1"
-                runat="server"
-                StarCssClass="Star"
-                WaitingStarCssClass="WaitingStar"
-                EmptyStarCssClass="Star"
-                FilledStarCssClass="FilledStar">
-            </asp:Rating>
-            <br />
-
-            <asp:Label ID="lblresult" runat="server" Text="" Font-Size="Smaller"></asp:Label>
-        </div>
-
-        <div class="rightratings">
-            <asp:TextBox runat="server" ID="txtreview" TextMode="MultiLine" Height="100px"></asp:TextBox>
-            <asp:Button runat="server" class="cartbutton" Style="float: right;" Text="Submit Review" ID="btnSubmit" OnClick="btnSubmit_Click" Height="30px" Width="100px" />
-        </div>
+        
     </body>
     </html>
 </asp:Content>

@@ -144,13 +144,33 @@
 }
 
     .midnavleft a {
-        color: #668cff;
+       
         float: left;
         font-size: 30px;
         height: 100%;
         width: 100%;
         font-family: "Lucida Handwriting", "Brush Script MT", cursive;
+        
     }
+.NameOfWebsite {
+    font-family: "Lucida Handwriting", "Brush Script MT", cursive;
+    color: #3d7adb;
+    -webkit-animation: PULSE 3s infinite;
+}
+
+@keyframes PULSE {
+    0% {
+        color: rgba(0,255,255);
+    }
+
+    110% {
+        color: black;
+    }
+}
+
+
+
+
 
 .srchbarcontainer {
     padding: 18px;
@@ -423,6 +443,10 @@ span.psw {
     color: #707B7C;
     padding: 10px;
     font-size: 13px;
+}
+
+#labelcenter{
+    text-align:center;
 }
 
 @media screen and (max-width: 300px) {

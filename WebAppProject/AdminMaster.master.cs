@@ -13,14 +13,26 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (Session["Role"] == null)
         {
-            Response.Redirect("index.aspx");
+            Response.Redirect("Home");
         }
         else if (Session["Role"].ToString().Equals("User"))
         {
-            Response.Redirect("index.aspx");
+            if (Session["TwoFAStatus"].ToString().Equals("No2FA"))
+            {
+                Response.Redirect("Home");
+            }
+            else if (Convert.ToBoolean(Session["TwoFAStatus"]) == false)
+            {
+                Response.Redirect("EmailOTP");
+            }
+            Response.Redirect("Home");
+
+
         }
+        
     }
 
 
@@ -30,6 +42,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         Session["AdminMasterPage"] = null;
         Session["UserMasterPage"] = null;
         Session.Clear();
-        Response.Redirect("index.aspx");
+        Response.Redirect("Home");
     }
 }
