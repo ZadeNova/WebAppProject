@@ -4,6 +4,9 @@ It is a project for my year 2 semester 2 course. Basically advanced web developm
 Goal of the project was to develop the website to fit the project requirements by a deadline.
 The project would then be assessed based on the criterias that the course teachers have shown us.
 
+<h2>What tech/tools/stuff that I used to build this project</h2>
+This project uses ASP.NET Webforms.
+
 <h3>What I have Learnt?</h3>
 <p>
 <a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> </a> 
