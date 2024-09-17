@@ -4,6 +4,9 @@ It is a project for my year 2 semester 2 course. Basically advanced web developm
 Goal of the project was to develop the website to fit the project requirements by a deadline.
 The project would then be assessed based on the criterias that the course teachers have shown us.
 
+
+<h3>This project is a Ecommerce app.</h3>
+
 <h2>What tech/tools/stuff that I used to build this project</h2>
 This project uses ASP.NET Webforms.
 
@@ -16,3 +19,17 @@ This project uses ASP.NET Webforms.
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> 
 <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> 
 </p>
+
+
+<h3>Features of the App</h3>
+<ul>
+  <li>Shopping Cart</li>
+  <li>Database</li>
+  <li>Authentication</li>
+  <li>Account Recovery</li>
+  <li>Google SignIn</li>
+</ul>
+
+
+
+
